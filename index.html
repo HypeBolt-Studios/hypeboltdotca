@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HypeBolt Studios</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #181818;
+            color: #F5EA76;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #000000;
+            padding: 20px 40px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #F5EA76;
+            text-transform: uppercase;
+        }
+        nav {
+            margin-top: 10px;
+        }
+        nav a {
+            color: #F5EA76;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: url('https://via.placeholder.com/1920x800') no-repeat center center/cover;
+            color: #F5EA76;
+        }
+        .hero h2 {
+            font-size: 2.5rem;
+            color: #F5EA76;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin: 10px 0 20px;
+        }
+        .hero button {
+            padding: 10px 20px;
+            background-color: #F5EA76;
+            border: none;
+            color: #181818;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            text-transform: uppercase;
+        }
+        .hero button:hover {
+            background-color: #e6d46a;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .portfolio {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .portfolio img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .portfolio img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #000000;
+            padding: 20px;
+            text-align: center;
+            color: #aaaaaa;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hype<span style="text-transform: uppercase;">B</span>olt Studios</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h2>Creating Stories That Electrify</h2>
+        <p>Your vision, our craft – together we make cinematic magic.</p>
+        <button>Learn More</button>
+    </div>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>
+            At HypeBolt Studios, we specialize in crafting stunning visuals and unforgettable stories. 
+            Our team of passionate filmmakers and creatives brings your ideas to life with precision and flair.
+        </p>
+    </section>
+
+    <section id="portfolio">
+        <h2>Our Portfolio</h2>
+        <div class="portfolio">
+            <img src="https://via.placeholder.com/300x200" alt="Film Project 1">
+            <img src="https://via.placeholder.com/300x200" alt="Film Project 2">
+            <img src="https://via.placeholder.com/300x200" alt="Film Project 3">
+            <img src="https://via.placeholder.com/300x200" alt="Film Project 4">
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>We’d love to hear from you! Reach out for collaborations, projects, or inquiries.</p>
+        <p>Email: <a href="mailto:info@hypebolt.ca" style="color: #F5EA76;">info@hypebolt.ca</a></p>
+        <p>Phone: <a href="tel:+1234567890" style="color: #F5EA76;">+1 (234) 567-890</a></p>
+    </section>
+
+    <footer>
+        &copy; 2024 HypeBolt Studios. All Rights Reserved. Visit us at <a href="https://hypebolt.ca" style="color: #F5EA76;">hypebolt.ca</a>
+    </footer>
+</body>
+</html>
