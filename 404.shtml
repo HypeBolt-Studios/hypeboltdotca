@@ -66,9 +66,9 @@
 </head>
 <body>
     <div>
-        <div class="spark">⚡</div>
         <h1>404</h1>
-        <p>Oops! The page you're looking for doesn't exist.</p>
+        <p>The page you are looking for doesn't exist or has been deleted.</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/Ao81ziiXHhs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         <a href="/">Return to Home</a>
     </div>
 </body>
