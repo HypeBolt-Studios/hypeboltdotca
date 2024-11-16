@@ -45,6 +45,7 @@
             border-radius: 5px;
             text-transform: uppercase;
             transition: background-color 0.3s;
+            margin-top: 10px;
         }
         a:hover {
             background-color: #e6d46a;
