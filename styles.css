@@ -39,7 +39,6 @@
             text-align: center;
             padding: 100px 20px;
             background: url('https://hypebolt.ca/banner.png') no-repeat center center/cover;
-            color: #F5EA76;
         }
         .hero h2 {
             font-size: 2.5rem;
@@ -51,17 +50,19 @@
         }
         .hero button {
             padding: 10px 20px;
-            background-color: #F5EA76;
-            border: none;
-            color: #181818;
+            background-color: #181818;
+            border: 2;
+            border-color: #F5EA76;
+            color: #F5EA76;
             font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 20px;
             text-transform: uppercase;
         }
         .hero button:hover {
-            background-color: #e6d46a;
+            background-color: #F5EA76;
+            color: black;
         }
 
         /* Section Styles */
@@ -115,3 +116,9 @@
             border-width: 1px;
         border-color:#F5EA76
         } 
+
+
+        .button {
+            outline: #F5EA76;
+            color: #181818;
+        }
