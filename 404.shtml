@@ -17,7 +17,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 85vh;
         }
 
         /* Title Styles */
@@ -79,6 +79,9 @@
         <p>The page you are looking for doesn't exist or has been deleted.</p>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/Ao81ziiXHhs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+    </div>
+    <div>
+        <p></p>
     </div>
     <div>
          <a href="/" class="button">Return to Home</a>
