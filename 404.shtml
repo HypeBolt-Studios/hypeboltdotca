@@ -3,119 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found</title>
+    <title>404 - Bouncing DVD Style</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
             background-color: #000000;
-            color: #f5ea76;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            min-height: 100vh;
-            display: grid;
-            place-items: center;
-            overflow-x: hidden;
-            position: relative;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .glitch {
-            position: relative;
-            font-size: 150px;
-            font-weight: 800;
+        .bouncing-container {
+            position: absolute;
+            white-space: nowrap;
+            animation: bounce 15s linear infinite;
+        }
+
+        .text-404 {
+            font-size: 120px;
+            font-family: Arial, sans-serif;
             color: #ff0000;
-            text-transform: uppercase;
-            text-shadow: 0.05em 0 0 rgba(245, 234, 118, 0.1),
-                         -0.025em -0.05em 0 rgba(245, 234, 118, 0.1),
-                         0.025em 0.05em 0 rgba(245, 234, 118, 0.1);
-            animation: glitch 2s infinite;
+            margin: 0;
         }
 
-        @keyframes glitch {
-            0% { transform: translate(0) }
-            20% { transform: translate(-2px, 2px) }
-            40% { transform: translate(-2px, -2px) }
-            60% { transform: translate(2px, 2px) }
-            80% { transform: translate(2px, -2px) }
-            100% { transform: translate(0) }
-        }
-
-        .container {
-            text-align: center;
-            padding: 2rem;
-            z-index: 1;
-        }
-
-        .message {
-            font-size: 1.2rem;
-            letter-spacing: 0.1em;
-            margin: 2rem 0;
-            opacity: 0.8;
+        .text-message {
+            font-size: 24px;
+            font-family: Arial, sans-serif;
+            color: #f5ea76;
+            margin: 10px 0;
         }
 
         .video-container {
-            max-width: 800px;
-            width: 90vw;
-            margin: 2rem auto;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(245, 234, 118, 0.1);
+            width: 400px;
+            margin-top: 20px;
         }
 
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            background: #111;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .video-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        iframe {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(245, 234, 118, 0.05), transparent);
-            pointer-events: none;
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            height: 225px;
             border: none;
         }
 
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            opacity: 0.3;
-            background: radial-gradient(circle at 50% 50%, rgba(245, 234, 118, 0.02) 0%, transparent 50%);
+        @keyframes bounce {
+            0% {
+                top: 0;
+                left: 0;
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(calc(100vw - 100%), calc(50vh - 50%));
+            }
+            50% {
+                transform: translate(calc(100vw - 100%), calc(100vh - 100%));
+            }
+            75% {
+                transform: translate(0, calc(100vh - 100%));
+            }
+            100% {
+                transform: translate(0, 0);
+            }
         }
     </style>
 </head>
 <body>
-    <div class="particles"></div>
-    <div class="container">
-        <h1 class="glitch">404</h1>
-        <p class="message">The page you seek lies beyond our reach</p>
+    <div class="bouncing-container">
+        <h1 class="text-404">404</h1>
+        <p class="text-message">Page Not Found - Bouncing Forever</p>
         <div class="video-container">
-            <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                </iframe>
-            </div>
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+            </iframe>
         </div>
     </div>
 </body>
