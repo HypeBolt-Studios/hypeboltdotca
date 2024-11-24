@@ -66,6 +66,9 @@
     <div class="bouncer">404</div>
 
     <script>
+        let currentLevel = 404;
+        let remainingBouncers = 20;
+
         class Bouncer {
             constructor(element, startX, startY, xSpeed, ySpeed) {
                 this.element = element;
@@ -80,6 +83,10 @@
             }
 
             update(others) {
+                const maxSpeed = 5;
+                this.xSpeed = Math.max(Math.min(this.xSpeed, maxSpeed), -maxSpeed);
+                this.ySpeed = Math.max(Math.min(this.ySpeed, maxSpeed), -maxSpeed);
+
                 const maxX = window.innerWidth - this.width;
                 const maxY = window.innerHeight - this.height;
 
@@ -193,7 +200,7 @@
             }
             const el = document.createElement('div');
             el.className = 'bouncer';
-            el.textContent = '404';
+            el.textContent = currentLevel;
             document.body.appendChild(el);
             return new Bouncer(el, x, y, 
                 2 + Math.random() * 2 * (Math.random() > 0.5 ? 1 : -1),
@@ -218,6 +225,7 @@
                           row * spacing + 
                           (Math.random() - 0.5) * 50;
 
+            el.textContent = currentLevel;
             return new Bouncer(
                 el,
                 startX,
@@ -257,7 +265,21 @@
                         bullet.element.remove();
                         player.bullets.splice(bulletIndex, 1);
                         bouncer.element.remove();
-                        bouncers[bouncerIndex] = spawnNew404();
+                        remainingBouncers--;
+                        
+                        if (remainingBouncers <= 0) {
+                            currentLevel++;
+                            remainingBouncers = 20;
+                            bouncers.forEach(b => b.element.remove());
+                            bouncers.length = 0;
+                            
+                            // Spawn new level
+                            for (let i = 0; i < 20; i++) {
+                                bouncers.push(spawnNew404());
+                            }
+                        } else {
+                            bouncers[bouncerIndex] = spawnNew404();
+                        }
                     }
                 });
             });
