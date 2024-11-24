@@ -175,13 +175,16 @@
                 this.bullets.forEach((bullet, index) => {
                     bullet.x += bullet.vx;
                     bullet.y += bullet.vy;
-                    bullet.element.style.transform = `translate(${bullet.x}px, ${bullet.y}px)`;
 
-                    if (bullet.x < 0 || bullet.x > window.innerWidth || 
-                        bullet.y < 0 || bullet.y > window.innerHeight) {
-                        bullet.element.remove();
-                        this.bullets.splice(index, 1);
+                    // Bounce off screen edges
+                    if (bullet.x > window.innerWidth || bullet.x < 0) {
+                        bullet.vx = -bullet.vx;
                     }
+                    if (bullet.y > window.innerHeight || bullet.y < 0) {
+                        bullet.vy = -bullet.vy;
+                    }
+
+                    bullet.element.style.transform = `translate(${bullet.x}px, ${bullet.y}px)`;
                 });
             }
 
@@ -261,7 +264,7 @@
                 if (!player.shootCooldown) {
                     player.shoot();
                     player.shootCooldown = true;
-                    setTimeout(() => player.shootCooldown = false, 50);
+                    setTimeout(() => player.shootCooldown = false, 100);
                 }
             }
 
@@ -283,6 +286,7 @@
                             currentLevel++;
                             remainingBouncers = 20;
                             // Spawn new level
+                                for (let i = 0; i < 20; i++) {
                             for (let i = 0; i < 20; i++) {
                                 bouncers.push(spawnNew404());
                             }
@@ -299,3 +303,4 @@
     </script>
 </body>
 </html>
+
