@@ -35,11 +35,6 @@
     <div class="bouncer">404</div>
     <div class="bouncer">404</div>
     <div class="bouncer">404</div>
-    <div class="bouncer">404</div>
-    <div class="bouncer">404</div>
-    <div class="bouncer">404</div>
-    <div class="bouncer">404</div>
-    <div class="bouncer">404</div>
 
     <script>
         class Bouncer {
@@ -59,7 +54,6 @@
                 const maxX = window.innerWidth - this.width;
                 const maxY = window.innerHeight - this.height;
 
-                // Wall collisions
                 if (this.x >= maxX || this.x <= 0) {
                     this.xSpeed = -this.xSpeed;
                     this.x = this.x >= maxX ? maxX : 0;
@@ -69,7 +63,6 @@
                     this.y = this.y >= maxY ? maxY : 0;
                 }
 
-                // Check collisions with other bouncers
                 others.forEach(other => {
                     if (other === this) return;
                     
@@ -79,24 +72,20 @@
                     const minDist = (this.width + other.width) / 2;
 
                     if (distance < minDist) {
-                        // Collision detected - calculate new velocities
                         const angle = Math.atan2(dy, dx);
                         const sin = Math.sin(angle);
                         const cos = Math.cos(angle);
 
-                        // Rotate velocities
                         const vx1 = this.xSpeed * cos + this.ySpeed * sin;
                         const vy1 = this.ySpeed * cos - this.xSpeed * sin;
                         const vx2 = other.xSpeed * cos + other.ySpeed * sin;
                         const vy2 = other.ySpeed * cos - other.xSpeed * sin;
 
-                        // Swap the x velocities
                         this.xSpeed = vx2 * cos - vy1 * sin;
                         this.ySpeed = vy1 * cos + vx2 * sin;
                         other.xSpeed = vx1 * cos - vy2 * sin;
                         other.ySpeed = vy2 * cos + vx1 * sin;
 
-                        // Move apart to prevent sticking
                         const overlap = minDist - distance;
                         const moveX = (overlap * dx) / distance / 2;
                         const moveY = (overlap * dy) / distance / 2;
@@ -113,11 +102,21 @@
             }
         }
 
-        const bouncers = Array.from(document.getElementsByClassName('bouncer')).map((el, i) => {
+        const bouncers = Array.from(document.getElementsByClassName('bouncer')).map((el, i, arr) => {
+            // Calculate spread starting positions
+            const rows = 3;
+            const cols = 4;
+            const row = Math.floor(i / cols);
+            const col = i % cols;
+            const spacing = 200;
+            
+            const startX = (window.innerWidth - (cols * spacing)) / 2 + col * spacing;
+            const startY = (window.innerHeight - (rows * spacing)) / 2 + row * spacing;
+
             return new Bouncer(
                 el,
-                Math.random() * (window.innerWidth - 200),
-                Math.random() * (window.innerHeight - 200),
+                startX,
+                startY,
                 3 + Math.random() * 3 * (Math.random() > 0.5 ? 1 : -1),
                 3 + Math.random() * 3 * (Math.random() > 0.5 ? 1 : -1)
             );
