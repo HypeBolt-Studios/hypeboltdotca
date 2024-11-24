@@ -13,7 +13,7 @@
             height: 100vh;
         }
 
-        #bouncer {
+        .bouncer {
             position: absolute;
             font-size: 120px;
             font-family: Arial, sans-serif;
@@ -24,42 +24,66 @@
     </style>
 </head>
 <body>
-    <div id="bouncer">404</div>
+    <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
 
     <script>
-        const bouncer = document.getElementById('bouncer');
-        let x = 0;
-        let y = 0;
-        let xSpeed = 3;
-        let ySpeed = 3;
+        class Bouncer {
+            constructor(element, startX, startY, xSpeed, ySpeed) {
+                this.element = element;
+                this.x = startX;
+                this.y = startY;
+                this.xSpeed = xSpeed;
+                this.ySpeed = ySpeed;
+            }
+
+            update() {
+                const maxX = window.innerWidth - this.element.offsetWidth;
+                const maxY = window.innerHeight - this.element.offsetHeight;
+
+                this.x += this.xSpeed;
+                this.y += this.ySpeed;
+
+                if (this.x >= maxX || this.x <= 0) {
+                    this.xSpeed = -this.xSpeed;
+                    this.x = this.x >= maxX ? maxX : 0;
+                }
+                if (this.y >= maxY || this.y <= 0) {
+                    this.ySpeed = -this.ySpeed;
+                    this.y = this.y >= maxY ? maxY : 0;
+                }
+
+                this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
+            }
+        }
+
+        const bouncers = Array.from(document.getElementsByClassName('bouncer')).map((el, i) => {
+            return new Bouncer(
+                el,
+                Math.random() * (window.innerWidth - 200),  // Random start X
+                Math.random() * (window.innerHeight - 200), // Random start Y
+                2 + Math.random() * 2 * (Math.random() > 0.5 ? 1 : -1), // Random speed X
+                2 + Math.random() * 2 * (Math.random() > 0.5 ? 1 : -1)  // Random speed Y
+            );
+        });
 
         function animate() {
-            const maxX = window.innerWidth - bouncer.offsetWidth;
-            const maxY = window.innerHeight - bouncer.offsetHeight;
-
-            x += xSpeed;
-            y += ySpeed;
-
-            if (x >= maxX || x <= 0) {
-                xSpeed = -xSpeed;
-                x = x >= maxX ? maxX : 0;
-            }
-            if (y >= maxY || y <= 0) {
-                ySpeed = -ySpeed;
-                y = y >= maxY ? maxY : 0;
-            }
-
-            bouncer.style.transform = `translate(${x}px, ${y}px)`;
+            bouncers.forEach(bouncer => bouncer.update());
             requestAnimationFrame(animate);
         }
 
         animate();
 
         window.addEventListener('resize', () => {
-            const maxX = window.innerWidth - bouncer.offsetWidth;
-            const maxY = window.innerHeight - bouncer.offsetHeight;
-            x = Math.min(x, maxX);
-            y = Math.min(y, maxY);
+            bouncers.forEach(bouncer => {
+                const maxX = window.innerWidth - bouncer.element.offsetWidth;
+                const maxY = window.innerHeight - bouncer.element.offsetHeight;
+                bouncer.x = Math.min(bouncer.x, maxX);
+                bouncer.y = Math.min(bouncer.y, maxY);
+            });
         });
     </script>
 </body>
