@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - DVD Bounce</title>
+    <title>404 - DVD Bounce Party</title>
     <style>
         body {
             background-color: #000000;
@@ -20,10 +20,21 @@
             font-weight: bold;
             color: #ff0000;
             user-select: none;
+            opacity: 0.9;
         }
     </style>
 </head>
 <body>
+    <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
     <div class="bouncer">404</div>
     <div class="bouncer">404</div>
     <div class="bouncer">404</div>
@@ -38,6 +49,9 @@
                 this.y = startY;
                 this.xSpeed = xSpeed;
                 this.ySpeed = ySpeed;
+                // Give each 404 a slightly different hue
+                const hue = Math.floor(Math.random() * 30);
+                this.element.style.color = `hsl(${hue}, 100%, 50%)`;
             }
 
             update() {
@@ -63,10 +77,10 @@
         const bouncers = Array.from(document.getElementsByClassName('bouncer')).map((el, i) => {
             return new Bouncer(
                 el,
-                Math.random() * (window.innerWidth - 200),  // Random start X
-                Math.random() * (window.innerHeight - 200), // Random start Y
-                2 + Math.random() * 2 * (Math.random() > 0.5 ? 1 : -1), // Random speed X
-                2 + Math.random() * 2 * (Math.random() > 0.5 ? 1 : -1)  // Random speed Y
+                Math.random() * (window.innerWidth - 200),
+                Math.random() * (window.innerHeight - 200),
+                3 + Math.random() * 3 * (Math.random() > 0.5 ? 1 : -1),
+                3 + Math.random() * 3 * (Math.random() > 0.5 ? 1 : -1)
             );
         });
 
