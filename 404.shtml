@@ -59,6 +59,11 @@
     <div class="bouncer">404</div>
     <div class="bouncer">404</div>
     <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
 
     <script>
         class Bouncer {
@@ -96,27 +101,25 @@
                     const minDist = (this.width + other.width) / 2;
 
                     if (distance < minDist) {
-                        const angle = Math.atan2(dy, dx);
-                        const sin = Math.sin(angle);
-                        const cos = Math.cos(angle);
-
-                        const vx1 = this.xSpeed * cos + this.ySpeed * sin;
-                        const vy1 = this.ySpeed * cos - this.xSpeed * sin;
-                        const vx2 = other.xSpeed * cos + other.ySpeed * sin;
-                        const vy2 = other.ySpeed * cos - other.xSpeed * sin;
-
-                        this.xSpeed = vx2 * cos - vy1 * sin;
-                        this.ySpeed = vy1 * cos + vx2 * sin;
-                        other.xSpeed = vx1 * cos - vy2 * sin;
-                        other.ySpeed = vy2 * cos + vx1 * sin;
+                        const normalX = dx / distance;
+                        const normalY = dy / distance;
+                        const relativeVelocityX = this.xSpeed - other.xSpeed;
+                        const relativeVelocityY = this.ySpeed - other.ySpeed;
+                        const impulse = (relativeVelocityX * normalX + relativeVelocityY * normalY) * 1.5;
+                        
+                        this.xSpeed -= impulse * normalX;
+                        this.ySpeed -= impulse * normalY;
+                        other.xSpeed += impulse * normalX;
+                        other.ySpeed += impulse * normalY;
 
                         const overlap = minDist - distance;
-                        const moveX = (overlap * dx) / distance / 2;
-                        const moveY = (overlap * dy) / distance / 2;
-                        this.x -= moveX;
-                        this.y -= moveY;
-                        other.x += moveX;
-                        other.y += moveY;
+                        const separationX = overlap * normalX * 0.5;
+                        const separationY = overlap * normalY * 0.5;
+                        
+                        this.x -= separationX;
+                        this.y -= separationY;
+                        other.x += separationX;
+                        other.y += separationY;
                     }
                 });
 
@@ -202,9 +205,9 @@
         const keys = {};
 
         const bouncers = Array.from(document.getElementsByClassName('bouncer')).map((el, i) => {
-            const rows = 4;
+            const rows = 5;
             const cols = 4;
-            const spacing = 150;
+            const spacing = 180;
             const row = Math.floor(i / cols);
             const col = i % cols;
             
