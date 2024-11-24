@@ -261,7 +261,7 @@
                 if (!player.shootCooldown) {
                     player.shoot();
                     player.shootCooldown = true;
-                    setTimeout(() => player.shootCooldown = false, 250);
+                    setTimeout(() => player.shootCooldown = false, 50);
                 }
             }
 
