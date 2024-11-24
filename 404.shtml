@@ -15,47 +15,16 @@
 
         #bouncer {
             position: absolute;
-            text-align: center;
-            white-space: nowrap;
-        }
-
-        .text-404 {
             font-size: 120px;
             font-family: Arial, sans-serif;
+            font-weight: bold;
             color: #ff0000;
-            margin: 0;
-        }
-
-        .text-message {
-            font-size: 24px;
-            font-family: Arial, sans-serif;
-            color: #f5ea76;
-            margin: 10px 0;
-        }
-
-        .video-container {
-            width: 400px;
-            margin-top: 20px;
-        }
-
-        iframe {
-            width: 100%;
-            height: 225px;
-            border: none;
+            user-select: none;
         }
     </style>
 </head>
 <body>
-    <div id="bouncer">
-        <h1 class="text-404">404</h1>
-        <p class="text-message">Page Not Found - Bouncing Forever</p>
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-            </iframe>
-        </div>
-    </div>
+    <div id="bouncer">404</div>
 
     <script>
         const bouncer = document.getElementById('bouncer');
@@ -84,10 +53,8 @@
             requestAnimationFrame(animate);
         }
 
-        // Start animation
         animate();
 
-        // Handle window resize
         window.addEventListener('resize', () => {
             const maxX = window.innerWidth - bouncer.offsetWidth;
             const maxY = window.innerHeight - bouncer.offsetHeight;
