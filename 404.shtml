@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - DVD Bounce Party</title>
+    <title>404 - Collision Party</title>
     <style>
         body {
             background-color: #000000;
@@ -49,18 +49,17 @@
                 this.y = startY;
                 this.xSpeed = xSpeed;
                 this.ySpeed = ySpeed;
-                // Give each 404 a slightly different hue
+                this.width = element.offsetWidth;
+                this.height = element.offsetHeight;
                 const hue = Math.floor(Math.random() * 30);
                 this.element.style.color = `hsl(${hue}, 100%, 50%)`;
             }
 
-            update() {
-                const maxX = window.innerWidth - this.element.offsetWidth;
-                const maxY = window.innerHeight - this.element.offsetHeight;
+            update(others) {
+                const maxX = window.innerWidth - this.width;
+                const maxY = window.innerHeight - this.height;
 
-                this.x += this.xSpeed;
-                this.y += this.ySpeed;
-
+                // Wall collisions
                 if (this.x >= maxX || this.x <= 0) {
                     this.xSpeed = -this.xSpeed;
                     this.x = this.x >= maxX ? maxX : 0;
@@ -70,6 +69,46 @@
                     this.y = this.y >= maxY ? maxY : 0;
                 }
 
+                // Check collisions with other bouncers
+                others.forEach(other => {
+                    if (other === this) return;
+                    
+                    const dx = other.x - this.x;
+                    const dy = other.y - this.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const minDist = (this.width + other.width) / 2;
+
+                    if (distance < minDist) {
+                        // Collision detected - calculate new velocities
+                        const angle = Math.atan2(dy, dx);
+                        const sin = Math.sin(angle);
+                        const cos = Math.cos(angle);
+
+                        // Rotate velocities
+                        const vx1 = this.xSpeed * cos + this.ySpeed * sin;
+                        const vy1 = this.ySpeed * cos - this.xSpeed * sin;
+                        const vx2 = other.xSpeed * cos + other.ySpeed * sin;
+                        const vy2 = other.ySpeed * cos - other.xSpeed * sin;
+
+                        // Swap the x velocities
+                        this.xSpeed = vx2 * cos - vy1 * sin;
+                        this.ySpeed = vy1 * cos + vx2 * sin;
+                        other.xSpeed = vx1 * cos - vy2 * sin;
+                        other.ySpeed = vy2 * cos + vx1 * sin;
+
+                        // Move apart to prevent sticking
+                        const overlap = minDist - distance;
+                        const moveX = (overlap * dx) / distance / 2;
+                        const moveY = (overlap * dy) / distance / 2;
+                        this.x -= moveX;
+                        this.y -= moveY;
+                        other.x += moveX;
+                        other.y += moveY;
+                    }
+                });
+
+                this.x += this.xSpeed;
+                this.y += this.ySpeed;
                 this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
             }
         }
@@ -85,7 +124,7 @@
         });
 
         function animate() {
-            bouncers.forEach(bouncer => bouncer.update());
+            bouncers.forEach(bouncer => bouncer.update(bouncers));
             requestAnimationFrame(animate);
         }
 
@@ -93,8 +132,8 @@
 
         window.addEventListener('resize', () => {
             bouncers.forEach(bouncer => {
-                const maxX = window.innerWidth - bouncer.element.offsetWidth;
-                const maxY = window.innerHeight - bouncer.element.offsetHeight;
+                const maxX = window.innerWidth - bouncer.width;
+                const maxY = window.innerHeight - bouncer.height;
                 bouncer.x = Math.min(bouncer.x, maxX);
                 bouncer.y = Math.min(bouncer.y, maxY);
             });
