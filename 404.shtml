@@ -179,9 +179,11 @@
                     // Bounce off screen edges
                     if (bullet.x > window.innerWidth || bullet.x < 0) {
                         bullet.vx = -bullet.vx;
+                        bullet.x = bullet.x > window.innerWidth ? window.innerWidth : 0;
                     }
                     if (bullet.y > window.innerHeight || bullet.y < 0) {
                         bullet.vy = -bullet.vy;
+                        bullet.y = bullet.y > window.innerHeight ? window.innerHeight : 0;
                     }
 
                     bullet.element.style.transform = `translate(${bullet.x}px, ${bullet.y}px)`;
@@ -285,8 +287,6 @@
                         if (remainingBouncers <= 0) {
                             currentLevel++;
                             remainingBouncers = 20;
-                            // Spawn new level
-                                for (let i = 0; i < 20; i++) {
                             for (let i = 0; i < 20; i++) {
                                 bouncers.push(spawnNew404());
                             }
@@ -303,4 +303,3 @@
     </script>
 </body>
 </html>
-
