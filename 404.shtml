@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Asteroids</title>
+    <title>404 Space Battle</title>
     <style>
         body {
             background-color: #000000;
@@ -15,7 +15,7 @@
 
         .bouncer {
             position: absolute;
-            font-size: 120px;
+            font-size: 60px;
             font-family: Arial, sans-serif;
             font-weight: bold;
             color: #ff0000;
@@ -27,10 +27,10 @@
             position: absolute;
             width: 0;
             height: 0;
-            border-left: 20px solid transparent;
-            border-right: 20px solid transparent;
-            border-bottom: 40px solid #f5ea76;
-            transform-origin: center 27px;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 30px solid #f5ea76;
+            transform-origin: center 20px;
         }
 
         .bullet {
@@ -54,9 +54,77 @@
     <div class="bouncer">404</div>
     <div class="bouncer">404</div>
     <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
+    <div class="bouncer">404</div>
 
     <script>
-        // Previous Bouncer class code remains the same...
+        class Bouncer {
+            constructor(element, startX, startY, xSpeed, ySpeed) {
+                this.element = element;
+                this.x = startX;
+                this.y = startY;
+                this.xSpeed = xSpeed;
+                this.ySpeed = ySpeed;
+                this.width = element.offsetWidth;
+                this.height = element.offsetHeight;
+                const hue = Math.floor(Math.random() * 30);
+                this.element.style.color = `hsl(${hue}, 100%, 50%)`;
+            }
+
+            update(others) {
+                const maxX = window.innerWidth - this.width;
+                const maxY = window.innerHeight - this.height;
+
+                if (this.x >= maxX || this.x <= 0) {
+                    this.xSpeed = -this.xSpeed;
+                    this.x = this.x >= maxX ? maxX : 0;
+                }
+                if (this.y >= maxY || this.y <= 0) {
+                    this.ySpeed = -this.ySpeed;
+                    this.y = this.y >= maxY ? maxY : 0;
+                }
+
+                others.forEach(other => {
+                    if (other === this) return;
+                    
+                    const dx = other.x - this.x;
+                    const dy = other.y - this.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const minDist = (this.width + other.width) / 2;
+
+                    if (distance < minDist) {
+                        const angle = Math.atan2(dy, dx);
+                        const sin = Math.sin(angle);
+                        const cos = Math.cos(angle);
+
+                        const vx1 = this.xSpeed * cos + this.ySpeed * sin;
+                        const vy1 = this.ySpeed * cos - this.xSpeed * sin;
+                        const vx2 = other.xSpeed * cos + other.ySpeed * sin;
+                        const vy2 = other.ySpeed * cos - other.xSpeed * sin;
+
+                        this.xSpeed = vx2 * cos - vy1 * sin;
+                        this.ySpeed = vy1 * cos + vx2 * sin;
+                        other.xSpeed = vx1 * cos - vy2 * sin;
+                        other.ySpeed = vy2 * cos + vx1 * sin;
+
+                        const overlap = minDist - distance;
+                        const moveX = (overlap * dx) / distance / 2;
+                        const moveY = (overlap * dy) / distance / 2;
+                        this.x -= moveX;
+                        this.y -= moveY;
+                        other.x += moveX;
+                        other.y += moveY;
+                    }
+                });
+
+                this.x += this.xSpeed;
+                this.y += this.ySpeed;
+                this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
+            }
+        }
 
         class Player {
             constructor() {
@@ -76,7 +144,6 @@
                 this.velocity.x *= this.friction;
                 this.velocity.y *= this.friction;
 
-                // Screen wrapping
                 if (this.x > window.innerWidth) this.x = 0;
                 if (this.x < 0) this.x = window.innerWidth;
                 if (this.y > window.innerHeight) this.y = 0;
@@ -84,13 +151,11 @@
 
                 this.element.style.transform = `translate(${this.x}px, ${this.y}px) rotate(${this.rotation}deg)`;
                 
-                // Update bullets
                 this.bullets.forEach((bullet, index) => {
                     bullet.x += bullet.vx;
                     bullet.y += bullet.vy;
                     bullet.element.style.transform = `translate(${bullet.x}px, ${bullet.y}px)`;
 
-                    // Remove bullets that are off screen
                     if (bullet.x < 0 || bullet.x > window.innerWidth || 
                         bullet.y < 0 || bullet.y > window.innerHeight) {
                         bullet.element.remove();
@@ -114,12 +179,6 @@
             }
         }
 
-        const player = new Player();
-        const keys = {};
-
-        window.addEventListener('keydown', e => keys[e.key] = true);
-        window.addEventListener('keyup', e => keys[e.key] = false);
-
         function spawnNew404() {
             const side = Math.floor(Math.random() * 4);
             let x, y;
@@ -134,10 +193,39 @@
             el.textContent = '404';
             document.body.appendChild(el);
             return new Bouncer(el, x, y, 
-                3 + Math.random() * 3 * (Math.random() > 0.5 ? 1 : -1),
-                3 + Math.random() * 3 * (Math.random() > 0.5 ? 1 : -1)
+                2 + Math.random() * 2 * (Math.random() > 0.5 ? 1 : -1),
+                2 + Math.random() * 2 * (Math.random() > 0.5 ? 1 : -1)
             );
         }
+
+        const player = new Player();
+        const keys = {};
+
+        const bouncers = Array.from(document.getElementsByClassName('bouncer')).map((el, i) => {
+            const rows = 4;
+            const cols = 4;
+            const spacing = 150;
+            const row = Math.floor(i / cols);
+            const col = i % cols;
+            
+            const startX = (window.innerWidth - (cols * spacing)) / 2 + 
+                          col * spacing + 
+                          (Math.random() - 0.5) * 50;
+            const startY = (window.innerHeight - (rows * spacing)) / 2 + 
+                          row * spacing + 
+                          (Math.random() - 0.5) * 50;
+
+            return new Bouncer(
+                el,
+                startX,
+                startY,
+                2 + Math.random() * 2 * (Math.random() > 0.5 ? 1 : -1),
+                2 + Math.random() * 2 * (Math.random() > 0.5 ? 1 : -1)
+            );
+        });
+
+        window.addEventListener('keydown', e => keys[e.key] = true);
+        window.addEventListener('keyup', e => keys[e.key] = false);
 
         function gameLoop() {
             if (keys.ArrowLeft) player.rotation -= 5;
@@ -157,13 +245,12 @@
 
             player.update();
 
-            // Check bullet collisions
             player.bullets.forEach((bullet, bulletIndex) => {
                 bouncers.forEach((bouncer, bouncerIndex) => {
                     const dx = bullet.x - bouncer.x;
                     const dy = bullet.y - bouncer.y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < 60) {
+                    if (distance < 40) {
                         bullet.element.remove();
                         player.bullets.splice(bulletIndex, 1);
                         bouncer.element.remove();
