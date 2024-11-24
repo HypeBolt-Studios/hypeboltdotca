@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Bouncing DVD Style</title>
+    <title>404 - DVD Bounce</title>
     <style>
         body {
             background-color: #000000;
@@ -11,15 +11,12 @@
             padding: 0;
             overflow: hidden;
             height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
-        .bouncing-container {
+        #bouncer {
             position: absolute;
+            text-align: center;
             white-space: nowrap;
-            animation: bounce 15s linear infinite;
         }
 
         .text-404 {
@@ -46,30 +43,10 @@
             height: 225px;
             border: none;
         }
-
-        @keyframes bounce {
-            0% {
-                top: 0;
-                left: 0;
-                transform: translate(0, 0);
-            }
-            25% {
-                transform: translate(calc(100vw - 100%), calc(50vh - 50%));
-            }
-            50% {
-                transform: translate(calc(100vw - 100%), calc(100vh - 100%));
-            }
-            75% {
-                transform: translate(0, calc(100vh - 100%));
-            }
-            100% {
-                transform: translate(0, 0);
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="bouncing-container">
+    <div id="bouncer">
         <h1 class="text-404">404</h1>
         <p class="text-message">Page Not Found - Bouncing Forever</p>
         <div class="video-container">
@@ -79,5 +56,44 @@
             </iframe>
         </div>
     </div>
+
+    <script>
+        const bouncer = document.getElementById('bouncer');
+        let x = 0;
+        let y = 0;
+        let xSpeed = 3;
+        let ySpeed = 3;
+
+        function animate() {
+            const maxX = window.innerWidth - bouncer.offsetWidth;
+            const maxY = window.innerHeight - bouncer.offsetHeight;
+
+            x += xSpeed;
+            y += ySpeed;
+
+            if (x >= maxX || x <= 0) {
+                xSpeed = -xSpeed;
+                x = x >= maxX ? maxX : 0;
+            }
+            if (y >= maxY || y <= 0) {
+                ySpeed = -ySpeed;
+                y = y >= maxY ? maxY : 0;
+            }
+
+            bouncer.style.transform = `translate(${x}px, ${y}px)`;
+            requestAnimationFrame(animate);
+        }
+
+        // Start animation
+        animate();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            const maxX = window.innerWidth - bouncer.offsetWidth;
+            const maxY = window.innerHeight - bouncer.offsetHeight;
+            x = Math.min(x, maxX);
+            y = Math.min(y, maxY);
+        });
+    </script>
 </body>
 </html>
