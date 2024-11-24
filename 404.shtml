@@ -51,6 +51,19 @@
             background-color: white;
             border-radius: 50%;
         }
+
+        .victory-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ff0000;
+            font-size: 48px;
+            font-family: "Courier New", monospace;
+            text-align: center;
+            z-index: 1000;
+            text-shadow: 0 0 10px #ff0000;
+        }
     </style>
 </head>
 <body>
@@ -176,7 +189,6 @@
                     bullet.x += bullet.vx;
                     bullet.y += bullet.vy;
 
-                    // Bounce off screen edges
                     if (bullet.x > window.innerWidth || bullet.x < 0) {
                         bullet.vx = -bullet.vx;
                         bullet.x = bullet.x > window.innerWidth ? window.innerWidth : 0;
@@ -294,6 +306,22 @@
                     }
                 });
             });
+
+            if (currentLevel > 666) {
+                const victoryMsg = document.createElement('div');
+                victoryMsg.className = 'victory-message';
+                victoryMsg.textContent = 'kenos.exe has stopped the program';
+                document.body.appendChild(victoryMsg);
+                
+                // Remove all bouncers and bullets
+                bouncers.forEach(bouncer => bouncer.element.remove());
+                player.bullets.forEach(bullet => bullet.element.remove());
+                bouncers.length = 0;
+                player.bullets.length = 0;
+                
+                // Stop the game loop
+                return;
+            }
 
             bouncers.forEach(bouncer => bouncer.update(bouncers));
             requestAnimationFrame(gameLoop);
