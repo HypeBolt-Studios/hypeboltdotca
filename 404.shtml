@@ -33,6 +33,17 @@
             transform-origin: center 20px;
         }
 
+        #player::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: red;
+            border-radius: 50%;
+            left: -2px;
+            top: -2px;
+        }
+
         .bullet {
             position: absolute;
             width: 4px;
@@ -265,20 +276,16 @@
                         bullet.element.remove();
                         player.bullets.splice(bulletIndex, 1);
                         bouncer.element.remove();
+                        bouncers.splice(bouncerIndex, 1);
                         remainingBouncers--;
                         
                         if (remainingBouncers <= 0) {
                             currentLevel++;
                             remainingBouncers = 20;
-                            bouncers.forEach(b => b.element.remove());
-                            bouncers.length = 0;
-                            
                             // Spawn new level
                             for (let i = 0; i < 20; i++) {
                                 bouncers.push(spawnNew404());
                             }
-                        } else {
-                            bouncers[bouncerIndex] = spawnNew404();
                         }
                     }
                 });
