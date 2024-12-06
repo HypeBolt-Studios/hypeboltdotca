@@ -1,0 +1,34 @@
+Designed to be decoded from knowing what A and B is (you still need this to know how to do it though)
+
+Rounded to nearest whole (4 or lower = down / 5 or higher = up)
+
+NEW CHARACTER = /
+/ = / (but between new character, "224/365///1752/270/294")
+SPACE = 0
+A = 24
+B = 73
+C = Square Root of A²+B² 
+D = A+B+C 
+E = D-B OR A+C 
+F = E/10 
+G = F + BD 
+H = G/D + A 
+I = H-B+E 
+J = I-E 
+K = I+J 
+L = K+G 
+M = L-F 
+N = Square Root of AxBxC 
+O = AxB 
+P = O+K 
+Q = P+N 
+R = B-A 
+S = A+B 
+T = H+S
+U = T-A 
+V = Square Root of G 
+W = A+H 
+X = W-V 
+Y = X+A 
+Z = C-B 
+

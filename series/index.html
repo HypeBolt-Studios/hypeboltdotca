@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://hypebolt.ca/include-footer.js" defer></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Series | HypeBolt Studios</title>
+  <link rel="stylesheet" href="https://hypebolt.ca/css/styles.css"> <!-- Link to your stylesheet -->
+</head>
+<body>
+
+  <!-- Header section -->
+  <header class="header">
+    <div class="logo">
+      <img src="https://hypebolt.ca/hblogo.png" alt="HypeBolt Studios Logo">
+    </div>
+    <div class="title-slogan">
+      <h1 class="site-title"><b>HypeBolt Studios</b></h1>
+      <p class="slogan">The Officials of Film™</p>
+    </div>
+  </header>
+
+  <!-- Navigation bar -->
+  <nav>
+    <ul>
+      <li><a href="https://hypebolt.ca">Home</a></li>
+      <li><a href="https://hypebolt.ca/about">About</a></li>
+      <li><a href="https://hypebolt.ca/movies">Movies</a></li>
+      <li><a href="https://hypebolt.ca/series"><u>Series</u></a></li>
+      <li><a href="https://hypebolt.ca/contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Movies section -->
+  <section class="movies-section">
+    <h2>Our Series</h2>
+
+    <!-- Search bar -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search movies...">
+      <button onclick="searchMovies()">Search</button>
+    </div>
+
+    <!-- Movie cards container -->
+    <div class="movie-cards">
+        <h1 style="display:none; margin-bottom:168px; color:grey;">No series yet.</h1>
+       <div class="moviep">
+          <img src="https://hypebolt.ca/assets/poster/RoR.png" alt="RoR Poster">
+          <h3><a href="https://hypebolt.ca/series/rift-of-realities">Rift of Realities</a></h3>
+          <p>Sci-Fi, Fantasy, Etc.</p>
+        </div>
+
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+<div id="footerContainer"></div>
+
+
+  <!-- Script for movie search -->
+  <script>
+    function searchMovies() {
+      var input, filter, movies, movie, title, i, txtValue;
+      input = document.getElementById('searchInput');
+      filter = input.value.toUpperCase();
+      movies = document.getElementsByClassName('moviep');
+
+      for (i = 0; i < movies.length; i++) {
+        movie = movies[i];
+        title = movie.getElementsByClassName('movie-info')[0].getElementsByTagName('h3')[0];
+        txtValue = title.textContent || title.innerText;
+
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          movie.style.display = '';
+        } else {
+          movie.style.display = 'none';
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>

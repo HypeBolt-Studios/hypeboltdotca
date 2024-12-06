@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://hypebolt.ca/include-footer.js" defer></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Siinyor | HypeBolt Studios</title>
+  <link rel="stylesheet" href="https://hypebolt.ca/css/styles.css"> <!-- Link to your stylesheet -->
+</head>
+<body>
+
+  <!-- Header section -->
+  <header class="header">
+    <div class="logo">
+      <img src="https://hypebolt.ca/hblogo.png" alt="HypeBolt Studios Logo">
+    </div>
+    <div class="title-slogan">
+      <h1 class="site-title"><b>HypeBolt Studios</b></h1>
+      <p class="slogan">The Officials of Film™</p>
+    </div>
+  </header>
+
+  <!-- Navigation bar -->
+  <nav>
+    <ul>
+      <li><a href="https://hypebolt.ca">Home</a></li>
+      <li><a href="https://hypebolt.ca/about">About</a></li>
+      <li><a href="https://hypebolt.ca/movies">Movies</a></li>
+      <li><a href="https://hypebolt.ca/series">Series</a></li>
+      <li><a href="https://hypebolt.ca/contact">Contact</a></li>
+    </ul>
+  </nav>
+  <main class="main">
+<a href="https://hypebolt.ca/crew"><h3><-Back</h3></a>
+</main>
+  <!-- Movie profile content -->
+  <section class="movie-profile">
+    <div class="container">
+      <div class="movie-details">
+        <img src="https://hypebolt.ca/assets/crew/siinyor.jpg" alt="Movie Poster">
+        <div class="movie-info">
+          <h1>Siinyor</h1>
+          <p>Role(s): <span>Artist</span></p> 
+          <p>Social(s): <span><a href="https://tiktok.com/@siinyority">TikTok</a>, <a href="https://x.com/madeinsiinyor_?Dead-Bird-App=true">X</a></span></p>
+        </div>
+      </div>
+        <nav>
+  </nav>
+      <div class="summary-section">
+        <h2>Description</h2>
+        <p class="summary">
+        TBD
+        </p>
+    </div>
+  </section>
+  
+  <div id="footerContainer"></div>
+
+</body>
+</html>

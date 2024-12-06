@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://hypebolt.ca/include-footer.js" defer></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HBCrew | HypeBolt Studios</title>
+  <link rel="stylesheet" href="https://hypebolt.ca/css/styles.css"> <!-- Link to your stylesheet -->
+</head>
+<body>
+
+  <!-- Header section -->
+  <header class="header">
+    <div class="logo">
+      <img src="https://hypebolt.ca/hblogo.png" alt="HypeBolt Studios Logo">
+    </div>
+    <div class="title-slogan">
+      <h1 class="site-title"><b>HypeBolt Studios</b></h1>
+      <p class="slogan">The Officials of Film™</p>
+    </div>
+  </header>
+
+  <!-- Navigation bar -->
+  <nav>
+    <ul>
+      <li><a href="https://hypebolt.ca">Home</a></li>
+      <li><a href="https://hypebolt.ca/about">About</a></li>
+      <li><a href="https://hypebolt.ca/movies">Movies</a></li>
+      <li><a href="https://hypebolt.ca/series">Series</a></li>
+      <li><a href="https://hypebolt.ca/contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Movies section -->
+  <section class="movies-section">
+    <h2>Our Crew</h2>
+
+    <!-- Search bar -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search...">
+      <button onclick="searchMovies()">Search</button>
+    </div>
+
+    <!-- Movie cards container -->
+    <div class="movie-cards">
+        
+        <div class="moviep">
+          <img src="https://hypebolt.ca/assets/crew/cherry.png" alt="RoR Poster">
+          <h3><a href="https://hypebolt.ca/crew/cherry">Cherry</a></h3>
+          <p>Voice Actor</p>
+        </div>
+        
+        <div class="moviep">
+          <img src="https://hypebolt.ca/assets/crew/haven.png" alt="RoR Poster">
+          <h3><a href="https://hypebolt.ca/crew/haven">Haven</a></h3>
+          <p>Musician - Sound Designer</p>
+        </div>
+        
+        <div class="moviep">
+          <img src="https://hypebolt.ca/assets/crew/jakksonkobalt.jpg" alt="RoR Poster">
+          <h3><a href="https://hypebolt.ca/crew/jakksonkobalt">Jakkson Kobalt</a></h3>
+          <p>Voice Actor</p>
+        </div>
+        
+        <div class="moviep">
+          <img src="https://d1m9vqlvl3fy94.cloudfront.net/user/attachment/46313/default_6231112023ProfilePic.png" alt="RoR Poster">
+          <h3><a href="https://hypebolt.ca/crew/joeymartin">Joey Martin</a></h3>
+          <p>Voice Actor</p>
+        </div>
+        
+       <div class="moviep">
+          <img src="https://hypebolt.ca/assets/crew/kevinsweet.jpg" alt="RoR Poster">
+          <h3><a href="https://hypebolt.ca/crew/kevinsweet">Kevin Sweet</a></h3>
+          <p>CEO - Writer</p>
+        </div>
+        
+        <div class="moviep">
+          <img src="https://hypebolt.ca/assets/crew/koperplyar.png" alt="RoR Poster">
+          <h3><a href="https://hypebolt.ca/crew/koperplyar">koperplyar</a></h3>
+          <p>Artist - Animator(3D)</p>
+        </div>
+        
+        <div class="moviep">
+          <img src="https://projectshi.carrd.co/assets/images/image04.jpg" alt="RoR Poster">
+          <h3><a href="https://hypebolt.ca/crew/shi">Shi</a></h3>
+          <p>Voice Actor - Artist - Comic Manager</p>
+        </div>
+        
+        <div class="moviep">
+          <img src="https://hypebolt.ca/assets/crew/siinyor.jpg" alt="RoR Poster">
+          <h3><a href="https://hypebolt.ca/crew/siinyor">Siinyor</a></h3>
+          <p>Artist</p>
+        </div>
+    
+
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+<div id="footerContainer"></div>
+
+
+  <!-- Script for movie search -->
+  <script>
+    function searchMovies() {
+      var input, filter, movies, movie, title, i, txtValue;
+      input = document.getElementById('searchInput');
+      filter = input.value.toUpperCase();
+      movies = document.getElementsByClassName('moviep');
+
+      for (i = 0; i < movies.length; i++) {
+        movie = movies[i];
+        title = movie.getElementsByClassName('movie-info')[0].getElementsByTagName('h3')[0];
+        txtValue = title.textContent || title.innerText;
+
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          movie.style.display = '';
+        } else {
+          movie.style.display = 'none';
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
