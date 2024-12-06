@@ -1,0 +1,36 @@
+ body {
+    font-family: Arial, sans-serif;
+    justify-content: space-between;
+    opacity: 1;
+    align-items: center;
+    text-align:center;
+    background-color: #000000;
+  }
+
+h1 {
+  font-family: 'SimSun', cursive, sans-serif;
+  color: white;
+  align-items: center;
+
+}
+
+p {
+    font-family: 'SimSun', cursive, sans-serif;
+    font-size: 22px;
+    color: white;
+    align-items: center;
+}
+
+a {
+    font-family: 'SimSun', cursive, sans-serif;
+  color: #f5ea76;
+  align-items: center;
+  text-decoration: none;
+}
+
+.lies {
+    display: none;
+}
+.lies img {
+    display: none;
+}

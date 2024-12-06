@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><meta charset="utf-8">
+    <title>Page Not Found</title>
+    <link rel="icon" type="image/x-icon" href="https://hypebolt.ca/gtch.ico" />
+    <link href="https://hypebolt.ca/error.css" rel="stylesheet" />
+    </head>
+    <body>
+    <p>Error <!--#echo var="REDIRECT_STATUS" --></p>
+    <h1 style="color:#ff3333">That page doesn't exist.</h1>
+    <p></p>
+    <iframe width="853" height="480" style="border:0" src="https://www.youtube.com/embed/fOSVzv3iioE" allowfullscreen></iframe>
+    <h1><a href="https://hypebolt.ca">Home</a></h1>
+    </body>
+    </html>
+    
+    

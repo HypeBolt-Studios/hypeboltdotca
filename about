@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <script src="https://cdn.gravitec.net/storage/abb33d962d3998efad85ec8bb8302574/client.js" async></script>
+  <meta charset="UTF-8">
+  <script src="include-footer.js" defer></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | HypeBolt Studios</title>
+  <link rel="stylesheet" href="css/styles.css"> <!-- Link to your stylesheet -->
+</head>
+<body>
+ 
+  <!-- Header section -->
+  <header class="header">
+    <div class="logo">
+      <img src="hblogo.png" alt="HypeBolt Studios Logo">
+    </div>
+    <div class="title-slogan">
+      <h1 class="site-title"><b>HypeBolt Studios</b></h1>
+      <p class="slogan">The Officials of Film™</p>
+    </div>
+  </header>
+
+  <!-- Navigation bar -->
+  <nav>
+    <ul>
+      <li><a href="https://hypebolt.ca">Home</a></li>
+      <li><a href="https://hypebolt.ca/about"><u>About</u></a></li>
+      <li><a href="https://hypebolt.ca/movies">Movies</a></li>
+      <li><a href="https://hypebolt.ca/series">Series</a></li>
+      <li><a href="https://hypebolt.ca/contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main content -->
+  <main class="main">
+    <section class="antihero">
+    <img style="padding:0px;" height="75%" width="75%" src="https://hypebolt.ca/hbban.png"> <h5 style="text-align:center;color:#505050;">Banner of HypeBolt Studios.</h5>
+    </section>
+    <section style="text-align:left;padding:0px;" class="antihero">
+        <h1 class="title">About HypeBolt Studios</h1>
+        <p>HypeBolt Studios is a Canadian-based film studio dedicated to creating visually stunning and emotionally captivating films for audiences worldwide. Our mission is to use the power of movies to change lives and inspire audiences. We produce films across various genres, including epic sci-fi adventures and heartwarming dramas.</p>
+        <p>At HypeBolt Studios, we believe that movies have the power to change lives. Our films aim to challenge audiences' perceptions and provoke thought. By creating films that are both visually stunning and emotionally captivating, we aim to inspire audiences to think differently and question the world around them.</p>
+        <p>Our films span a wide range of genres, including:</p>
+        <ul>
+            <li>Epic sci-fi adventures: We create films that transport audiences to otherworldly realms and immerse them in captivating stories.</li>
+            <li>Heartwarming dramas: We produce films that explore the depths of human emotion and inspire audiences to connect with the characters on screen.</li>
+            <li>Action-packed thrillers: We create films that keep audiences on the edge of their seats and leave them craving more.</li>
+            <li>Comedies: We produce films that make audiences laugh out loud and leave them with a smile on their faces.</li>
+        </ul>
+        <p></p>
+        <p>By producing films across such a diverse range of genres, we aim to cater to the tastes and preferences of audiences worldwide. Our films are designed to captivate and inspire, and we are committed to creating a film experience that is both visually stunning and emotionally captivating.</p>
+        <p>Join us on our journey as we push the limits of what's possible in filmmaking and experience the magic of HypeBolt Studios for yourself.</p>
+    </section>
+    <section style="background:#000;" class="hero">
+        <a class="btn" style="margin-right:25px;" href="https://hypebolt.ca/series">Series</a><a class="btn" href="https://hypebolt.ca/movies">Movies</a>
+    </section>
+     <section class="antihero">
+      <h1>HypeBolt Pick</h1>
+      <div style="position: relative; padding-bottom: 56.25%; /* 16:9 aspect ratio */ padding-top: 30px; height: 0; overflow: hidden;">
+  <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/GYs_T63rDsM" frameborder="0" allowfullscreen></iframe>
+</div>
+</section>
+<section class="antihero">
+<a class="btn" href="https://hypebolt.ca/crew">Our Crew</a>
+</section>
+
+  </main>
+
+  <!-- Footer -->
+<div id="footerContainer"></div>
+
+
+</body>
+</html>
