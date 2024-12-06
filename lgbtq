@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGBTQ+ Stance | HypeBolt Studios</title>
+    <link rel="stylesheet" href="ltgbfd.html">
+</head>
+<body>
+    <header>
+        <h1>HypeBolt Studios</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Our Stance on LGBTQ+</h2>
+        <hr>
+        <div class="desc">
+            <p>At HypeBolt Studios, we firmly believe in equality, respect, and inclusion for all individuals regardless of their sexual orientation or gender identity. We stand proudly as allies of the LGBTQ+ community.</p>
+            
+            <p>Our commitment includes:</p>
+            <ul style="text-align: left; max-width: 800px; margin: 0 auto;">
+                <li>Creating a safe and welcoming environment for all customers and employees</li>
+                <li>Zero tolerance for discrimination of any kind</li>
+                <li>Supporting LGBTQ+ rights and initiatives</li>
+                <li>Celebrating diversity in all its forms</li>
+            </ul>
+            
+            <p>We believe that everyone deserves to be treated with dignity and respect, and we're committed to maintaining an inclusive space where all people feel valued and accepted.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 HYPEBOLT. All rights reserved.</p>
+    </footer>
+</body>
+</html>
